@@ -100,7 +100,9 @@
 }
 
 .title{
-	width: 50%;
+	padding-left: 30%;
+	font-size: 20px;
+	background-color: rgba(130, 130, 130, 0.7)
 }
 
 .main-btn{
@@ -121,8 +123,4 @@ body {
 	width: 100%;
 	margin: 0;
 	min-height: 100vh;
-}
-
-.date{*} {
-
 }
