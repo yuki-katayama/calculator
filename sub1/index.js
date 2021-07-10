@@ -2,17 +2,19 @@ class Caliculator {
 constructor()
 	{
 		this.last_word_is_digit = true
+		this.history_id = 0
 		this.last_v = 0
 		this.mem_m = 0
 		this.mem_not_m = ""
 		this.memflg = false
 		this.floatflg = false
 	}
-	append(v)
+	append(v, html_v)
 	{
 		if ((this.last_word_is_digit == false
 			&& (!(Number.isInteger(v) || v == '00')))
-			|| (this.last_v == 0 && (String(v)[0] == '0')))
+			|| (this.last_v == 0 && (String(v)[0] == '0'))
+			|| (html_v.length == 0 && !(Number.isInteger(v))))
 			return ;
 		document.querySelector("input").value += String(v)
 		if(Number.isInteger(v) || v == '00')
@@ -34,13 +36,18 @@ constructor()
 	}
 	result(html_v)
 	{
-		if (this.last_word_is_digit == false)
+		if (this.last_word_is_digit == false || html_v.length == 0)
 			return ;
 		const f = new Function("return " + html_v)
-		this.result_clear( f().toString() )
-	}
-	result_clear(v)
-	{
+		let v = f().toString()
+		var newEle = document.createElement('p');
+		newEle.classList.add('history' + this.history_id);
+		var parent = document.getElementById('result');
+		var reference = document.querySelector('.history');
+		parent.insertBefore(newEle, reference);
+		document.getElementsByClassName("history" + this.history_id)[0].textContent = html_v + "=" + v
+		this.history_id += 1
+		console.log(this.history_id)
 		document.querySelector("input").value = v
 		this.last_v = Number(v)
 	}
@@ -75,6 +82,7 @@ constructor()
 				return ;
 			let digit = 0
 			let last_len = String(this.last_v).length
+			console.log(last_len)
 			html_v = html_v.slice(0, -(last_len))
 			digit = culc(v, this.last_v)
 			document.querySelector("input").value = html_v + String(digit)
@@ -126,5 +134,5 @@ function press_key(v)
 				|| v == 'INCL_TAX')
 		dentaku.culc_signs(v, html_v)
 	else
-		dentaku.append(v)
+		dentaku.append(v, html_v)
 }

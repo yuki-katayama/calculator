@@ -13,8 +13,8 @@
 	<body>
 		<h1>電卓</h1>
 		<div class="container">
-			<div class="result">
-				<h2>計算履歴</h2>
+			<div class="result" id="result">
+				<p class="history"></p>
 			</div>
 			<div class="calc">
 				<div class="main">
@@ -35,32 +35,32 @@
 						<div class="option-row-btn">
 							<button type="button" class="btn-small" onclick="press_key('AC')">AC</button>
 							<button type="button" class="btn-small" onclick="press_key('+/-')">+/-</button>
-							<button type="button" class="btn-small" onclick="press_key('/')">/</button>
+							<button type="button" class="btn-small" onclick="press_key('%')">%</button>
 							<button type="button" class="btn-small" onclick="press_key('▶︎')">▶︎</button>
 						</div>
 						<div class="option-row-btn">
 							<button type="button" class="btn-big" onclick="press_key(7)">7</button>
 							<button type="button" class="btn-big" onclick="press_key(8)">8</button>
 							<button type="button" class="btn-big" onclick="press_key(9)">9</button>
-							<button type="button" class="btn-big" onclick="press_key('%')">%</button>
+							<button type="button" class="btn-big-yellow" onclick="press_key('/')">/</button>
 						</div>
 						<div class="option-row-btn">
 							<button type="button" class="btn-big" onclick="press_key(4)">4</button>
 							<button type="button" class="btn-big" onclick="press_key(5)">5</button>
 							<button type="button" class="btn-big" onclick="press_key(6)">6</button>
-							<button type="button" class="btn-big" onclick="press_key('*')">*</button>
+							<button type="button" class="btn-big-yellow" onclick="press_key('×')">×</button>
 						</div>
 						<div class="option-row-btn">
 							<button type="button" class="btn-big" onclick="press_key(1)">1</button>
 							<button type="button" class="btn-big" onclick="press_key(2)">2</button>
 							<button type="button" class="btn-big" onclick="press_key(3)">3</button>
-							<button type="button" class="btn-big" onclick="press_key('-')">-</button>
+							<button type="button" class="btn-big-yellow" onclick="press_key('-')">-</button>
 						</div>
 						<div class="option-row-btn">
 							<button type="button" class="btn-big" onclick="press_key(0)">0</button>
 							<button type="button" class="btn-big" onclick="press_key('.')">.</button>
-							<button type="button" class="btn-big" onclick="press_key('C')">C</button>
-							<button type="button" class="btn-big" onclick="press_key('+')">+</button>
+							<button type="button" class="btn-big-yellow" onclick="press_key('C')">C</button>
+							<button type="button" class="btn-big-yellow" onclick="press_key('+')">+</button>
 						</div>
 						<!-- <button type="button" class="btn-default" onclick="press_key('00')">00</button> -->
 					</div>

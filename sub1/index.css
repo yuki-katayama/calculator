@@ -1,13 +1,28 @@
-.btn-red, .btn-big {
-	height: 50px;
+:root{
+	--big-btn-size: 84px;
+	--small-btn-size: 40px;
+}
+
+.btn-big-yellow, .btn-big {
+	height: var(--big-btn-size);
 	width: calc(25% - 2px);
 	margin-right: 2px;
+	border-radius: 10px;
+	font-size: 45px;
+	background-color: white;
+}
+
+.btn-big-yellow {
+	background-color: rgba(254, 210, 55, 1);
+	color: white;
 }
 
 .btn-small {
-	height: 30px;
+	height: var(--small-btn-size);
 	width: calc(25% - 2px);
 	margin-right: 2px;
+	border-radius: 10px;
+	background-color: rgba(230, 230, 230, 1);
 }
 
 .btn-result {
@@ -15,12 +30,18 @@
 	height: 100px;
 	position: absolute;
 	bottom: 0px;
-	background-color: red;
+	background-color: rgba(252, 49, 49, 1);
 	margin-left: 3px;
 	color: white;
 	font-size: 30px;
+	border-radius: 10px;
 }
 
+.btn-red{
+	color: white;
+	background-color: red;
+	border-radius: 10px;
+}
 
 .option-row-btn {
 	display: flex;
@@ -36,15 +57,13 @@
 	margin: 0;
 }
 
-.btn-red{
-	color: white;
-	background-color: red;
-}
 
 .inp-default{
 	width: calc(100% - 8px);
 	height: 60px;
 	margin-bottom: 7px;
+	font-size: 25px;
+	padding-left: 10px;
 }
 
 .container{
@@ -60,12 +79,20 @@
 	background-color: white;
 	width: 48%;
 	height: auto;
+	overflow-wrap:break-word;
+}
+
+.result p{
+	padding: 0 10px;
 }
 
 .calc{
 	border-radius: 10px;
 	display: flex;
 	width: 48%;
+	background-color: rgba(255,255,255,0.5);
+	padding: 10px;
+	max-height: 567px;
 }
 
 .main{
@@ -90,4 +117,8 @@ body {
 	width: 100%;
 	margin: 0;
 	min-height: 100vh;
+}
+
+.date{*} {
+
 }
