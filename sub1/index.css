@@ -12,3 +12,30 @@
 	width: 80px;
     height: 50px;
 }
+
+.container{
+	justify-content: space-between;
+	display: flex;
+	padding: 50px;
+	width: 1000px;
+}
+
+.result{
+	border-radius: 25px;
+	background-color: white;
+	width: 48%;
+	height: auto;
+}
+.culc{
+	border-radius: 25px;
+	width: 48%;
+}
+
+body {
+	background-image: url(hawai.png);
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 100vw;
+	height: 100vh;
+}
