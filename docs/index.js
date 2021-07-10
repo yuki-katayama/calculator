@@ -137,10 +137,7 @@ function press_key(v)
 	else if (v == 'C')
 		dentaku.clear(html_v.slice(0, -(String(dentaku.last_v).length)), "C")
 	else if (v == '▶︎')
-	{
-		
 		document.querySelector("input").value = html_v.slice(0, html_v.length - 1)
-	}
 	else if (v == '=')
 		dentaku.result(html_v)
 	else if (v == 'M-' || v == 'M+' || v == 'MC' || v == 'MR')
