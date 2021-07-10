@@ -1,0 +1,14 @@
+.btn-default {
+    width: 80px;
+    height: 50px;
+}
+.inp-default{
+	width: 500px;
+}
+
+.btn-right {
+	display: block;
+	margin: 0 0 0 auto;
+	width: 80px;
+    height: 50px;
+}
