@@ -11,61 +11,64 @@
 	</head>
 
 	<body>
+		<h1>電卓</h1>
 		<div class="container">
 			<div class="result">
-				<p>a</p>
+				<h2>計算履歴</h2>
 			</div>
 			<div class="calc">
-				<input type="text" id="output" class="inp-default">
-				<div>
-					<div>
-						<button type="button" class="btn-default" onclick="press_key('EXCL_TAX')">税抜</button>
-						<button type="button" class="btn-default" onclick="press_key('INCL_TAX')">税込</button>
-					</div>
-					<div>
-						<button type="button" class="btn-default" onclick="press_key('TIME')">時間計算</button>
-						<button type="button" class="btn-default" onclick="press_key('%')">%</button>
-						<button type="button" class="btn-default" onclick="press_key('RADICAL')">√</button>
-						<button type="button" class="btn-default" onclick="press_key('▶︎')">▶︎</button>
-					</div>
-					<div>
-						<button type="button" class="btn-default" onclick="press_key('MC')">MC</button>
-						<button type="button" class="btn-default" onclick="press_key('MR')">MR</button>
-						<button type="button" class="btn-default" onclick="press_key('M-')">M-</button>
-						<button type="button" class="btn-default" onclick="press_key('M+')">M+</button>
-						<button type="button" class="btn-default" onclick="press_key('/')">/</button>
-					</div>
-					<div>
-						<button type="button" class="btn-default" onclick="press_key('+/-')">+/-</button>
-						<button type="button" class="btn-default" onclick="press_key(7)">7</button>
-						<button type="button" class="btn-default" onclick="press_key(8)">8</button>
-						<button type="button" class="btn-default" onclick="press_key(9)">9</button>
-						<button type="button" class="btn-default" onclick="press_key('*')">*</button>
-					</div>
-					<div>
-						<button type="button" class="btn-default" onclick="press_key('C')">C</button>
-						<button type="button" class="btn-default" onclick="press_key(4)">4</button>
-						<button type="button" class="btn-default" onclick="press_key(5)">5</button>
-						<button type="button" class="btn-default" onclick="press_key(6)">6</button>
-						<button type="button" class="btn-default" onclick="press_key('-')">-</button>
-					</div>
-					<div>
-					</div>
-					<div>
-						<button type="button" class="btn-default" onclick="press_key('AC')">AC</button>
-						<button type="button" class="btn-default" onclick="press_key(1)">1</button>
-						<button type="button" class="btn-default" onclick="press_key(2)">2</button>
-						<button type="button" class="btn-default" onclick="press_key(3)">3</button>
-						<button type="button" class="btn-default" onclick="press_key('+')">+</button>
-					</div>
-					<div>
-						<button type="button" class="btn-default" onclick="press_key(0)">0</button>
-						<button type="button" class="btn-default" onclick="press_key('00')">00</button>
-						<button type="button" class="btn-default" onclick="press_key('.')">.</button>
-						<button type="button" class="btn-default" onclick="press_key('=')">=</button>
+				<div class="main">
+					<input type="text" id="output" class="inp-default">
+					<div class="main-btn">
+						<div class="option-row-btn">
+							<button type="button" class="btn-small" onclick="press_key('TIME')">not</button>
+							<button type="button" class="btn-small" onclick="press_key('RADICAL')">√</button>
+							<button type="button" class="btn-small" onclick="press_key('EXCL_TAX')">税抜</button>
+							<button type="button" class="btn-small" onclick="press_key('INCL_TAX')">税込</button>
+						</div>
+						<div class="option-row-btn">
+							<button type="button" class="btn-small" onclick="press_key('MC')">MC</button>
+							<button type="button" class="btn-small" onclick="press_key('MR')">MR</button>
+							<button type="button" class="btn-small" onclick="press_key('M-')">M-</button>
+							<button type="button" class="btn-small" onclick="press_key('M+')">M+</button>
+						</div>
+						<div class="option-row-btn">
+							<button type="button" class="btn-small" onclick="press_key('AC')">AC</button>
+							<button type="button" class="btn-small" onclick="press_key('+/-')">+/-</button>
+							<button type="button" class="btn-small" onclick="press_key('/')">/</button>
+							<button type="button" class="btn-small" onclick="press_key('▶︎')">▶︎</button>
+						</div>
+						<div class="option-row-btn">
+							<button type="button" class="btn-big" onclick="press_key(7)">7</button>
+							<button type="button" class="btn-big" onclick="press_key(8)">8</button>
+							<button type="button" class="btn-big" onclick="press_key(9)">9</button>
+							<button type="button" class="btn-big" onclick="press_key('%')">%</button>
+						</div>
+						<div class="option-row-btn">
+							<button type="button" class="btn-big" onclick="press_key(4)">4</button>
+							<button type="button" class="btn-big" onclick="press_key(5)">5</button>
+							<button type="button" class="btn-big" onclick="press_key(6)">6</button>
+							<button type="button" class="btn-big" onclick="press_key('*')">*</button>
+						</div>
+						<div class="option-row-btn">
+							<button type="button" class="btn-big" onclick="press_key(1)">1</button>
+							<button type="button" class="btn-big" onclick="press_key(2)">2</button>
+							<button type="button" class="btn-big" onclick="press_key(3)">3</button>
+							<button type="button" class="btn-big" onclick="press_key('-')">-</button>
+						</div>
+						<div class="option-row-btn">
+							<button type="button" class="btn-big" onclick="press_key(0)">0</button>
+							<button type="button" class="btn-big" onclick="press_key('.')">.</button>
+							<button type="button" class="btn-big" onclick="press_key('C')">C</button>
+							<button type="button" class="btn-big" onclick="press_key('+')">+</button>
+						</div>
+						<!-- <button type="button" class="btn-default" onclick="press_key('00')">00</button> -->
 					</div>
 				</div>
+				<div class="sub">
+					<button type="button" class="btn-result" onclick="press_key('=')">=</button>
+				</div>
 			</div>
+		</div>
 	</body>
-
 </html>

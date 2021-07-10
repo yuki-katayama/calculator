@@ -6,6 +6,7 @@ constructor()
 		this.mem_m = 0
 		this.mem_not_m = ""
 		this.memflg = false
+		this.floatflg = false
 	}
 	append(v)
 	{
@@ -36,9 +37,9 @@ constructor()
 		if (this.last_word_is_digit == false)
 			return ;
 		const f = new Function("return " + html_v)
-		this.culc_clear( f().toString() )
+		this.result_clear( f().toString() )
 	}
-	culc_clear(v)
+	result_clear(v)
 	{
 		document.querySelector("input").value = v
 		this.last_v = Number(v)
