@@ -34,20 +34,23 @@ constructor()
 				this.last_v = 0
 		}
 	}
+	add_oneline(html_v, v)
+	{
+		const newEle = document.createElement('p');
+		newEle.classList.add('history' + this.history_id);
+		const parent = document.getElementById('result');
+		const reference = document.querySelector('.history');
+		parent.insertBefore(newEle, reference);
+		document.getElementsByClassName("history" + this.history_id)[0].textContent = html_v + "=" + v
+		this.history_id += 1
+	}
 	result(html_v)
 	{
 		if (this.last_word_is_digit == false || html_v.length == 0)
 			return ;
 		const f = new Function("return " + html_v)
 		let v = f().toString()
-		var newEle = document.createElement('p');
-		newEle.classList.add('history' + this.history_id);
-		var parent = document.getElementById('result');
-		var reference = document.querySelector('.history');
-		parent.insertBefore(newEle, reference);
-		document.getElementsByClassName("history" + this.history_id)[0].textContent = html_v + "=" + v
-		this.history_id += 1
-		console.log(this.history_id)
+		this.add_oneline(html_v, v);
 		document.querySelector("input").value = v
 		this.last_v = Number(v)
 	}
@@ -62,6 +65,9 @@ constructor()
 	}
 	culc_signs(v, html_v)
 	{
+		function factorial(n) {
+			return (n != 1) ? n * factorial(n - 1) : 1;
+		}
 		function culc(v, last_v)
 			{
 				if (v == '%')
@@ -74,6 +80,16 @@ constructor()
 					digit = last_v / 1.08
 				else if (v == 'INCL_TAX')
 					digit = last_v * 1.08
+				else if (v == 'SQU')
+					digit = last_v * last_v
+				else if (v == 'FACT')
+					digit = factorial(last_v)
+				else if (v == 'SIN')
+					digit = Math.sin(last_v)
+				else if (v == 'COS')
+					digit = Math.cos(last_v)
+				else if (v == 'TAN')
+					digit = Math.tan(last_v)
 				return (digit)
 			}
 			if (this.last_word_is_digit == false
@@ -128,7 +144,8 @@ function press_key(v)
 		exec_m(v, html_v)
 	else if (v == '%' || v == "+/-"
 				|| v == 'RADICAL' || v == 'EXCL_TAX'
-				|| v == 'INCL_TAX')
+				|| v == 'INCL_TAX' || v == 'SQU' || v == 'FACT'
+				|| v == 'SIN' || v == 'COS' || v == 'TAN')
 		dentaku.culc_signs(v, html_v)
 	else
 		dentaku.append(v, html_v)
