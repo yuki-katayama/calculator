@@ -10,20 +10,25 @@ class Caliculator {
 	append(v) {
 		if ((this.last_word_is_digit === false
 				&& (!(Number(v) >= -1 || v === '00')))
-				|| (this.last_v === 0 && (String(v)[0] === '0')))
+				|| (this.last_v === 0 && (String(v)[0] === '0'))
+				|| (v === '.' && this.float_cnt > 0))
 					return;
 		let html_v = document.querySelector("input").value += String(v)
 		if (Number(v) >= -1 || v === '00') {
 			this.last_word_is_digit = true
-			if (this.last_v === 0)
+			if (this.last_v === 0 && this.float_cnt == 0)
 				this.last_v = v
 			else if (v === '00')
 				this.last_v = Number(String(this.last_v) + "00")
-			else if (this.float_cnt >= 1)
+			else if (this.float_cnt > 0)
 			{
-				console.log(this.float_cnt)
 				if (this.float_cnt === 1)
-					this.last_v = Number(String(this.last_v) + "." + String(v))
+				{
+					if (this.last_v == 0)
+						this.last_v = Number("0." + String(v))
+					else
+						this.last_v = Number(String(this.last_v) + "." + String(v))
+				}
 				else
 					this.last_v = Number(String(this.last_v) + String(v))
 				this.float_cnt += 1
@@ -38,7 +43,11 @@ class Caliculator {
 				this.last_v = 0
 			}
 			else
-				this.float_cnt += 1
+			{
+				if (this.last_v === 0)
+					document.querySelector("input").value = '0.'
+				this.float_cnt = 1
+			}
 		}
 	}
 	add_oneline(html_v, v) {
@@ -72,13 +81,12 @@ class Caliculator {
 		}
 	}
 	update_flg(html_v) {
-		this.last_word_is_digit = (Number(html_v.slice(-1)) > -1) ? true : false;
+		this.last_word_is_digit = (Number(html_v.slice(-1)) > -1 && html_v !== "") ? true : false;
 		if (String(this.last_v).indexOf(".") !== -1)
 			this.float_cnt = (String(this.last_v).indexOf(".") != -1)
 								? String(this.last_v).length - String(this.last_v).indexOf(".") : 0;
 		else if (this.float_cnt > 0)
 			this.float_cnt = (html_v.slice(-1) === '.') ? 1 : 0;
-		console.log(html_v)
 	}
 	culc_signs(v, html_v) {
 		function factorial(n) {
@@ -151,22 +159,16 @@ function press_key(v) {
 	}
 	let html_v = document.querySelector("input").value
 	if (v === 'AC')
-		dentaku.clear("0", "AC")
+		dentaku.clear("", "AC")
 	else if (v === 'C')
-		dentaku.clear(html_v.slice(0, -(String(dentaku.last_v).length)), "C")
+		dentaku.clear(html_v.slice(0, -(html_v.split(/[-+/* ]/).slice(-1)[0].length)), "C")
 	else if (v === '▶︎') {
 		html_v = html_v.slice(0, html_v.length - 1)
 		document.querySelector("input").value = html_v
 		if (Number(html_v.slice(-1)) > -1 || html_v.slice(-1) === '.')
-		{
-			console.log(Number(html_v.split(/[-+/* ]/).slice(-1)))
 			dentaku.last_v = Number(html_v.split(/[-+/* ]/).slice(-1))
-		}
 		else if (Number(html_v.slice(-2)) > -1)
-		{
-			console.log(html_v.split(/[-+/* ]/))
 			dentaku.last_v = Number(html_v.split(/[-+/* ]/).slice(-2))
-		}
 		else
 			dentaku.last_v = 0
 		dentaku.update_flg(html_v)
@@ -178,8 +180,25 @@ function press_key(v) {
 		v === 'RADICAL' || v === 'EXCL_TAX' ||
 		v === 'INCL_TAX' || v === 'SQU' || v === 'FACT' ||
 		v === 'SIN' || v === 'COS' || v === 'TAN')
-		dentaku.culc_signs(v, html_v)
+		{
+			try {
+				dentaku.culc_signs(v, html_v)
+			} catch (e)
+			{
+				if (e instanceof RangeError)
+					console.log("Error: Maximmum size")
+			}
+		}
 	else
+	{
+		if (document.querySelector("input").value === "0")
+		{
+			document.querySelector("input").value = ""
+			dentaku.update_flg("")
+		}
 		dentaku.append(v, html_v)
+	}
+	if (dentaku.last_v == Infinity)
+		document.querySelector("input").value = "Error: INF"
 	console.log(dentaku.last_v, dentaku.float_cnt, dentaku.last_word_is_digit)
 }
