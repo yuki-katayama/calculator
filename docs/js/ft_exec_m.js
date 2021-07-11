@@ -5,7 +5,7 @@ function ft_exec_m(v, html_v) {
 		dentaku.mem_m += dentaku.last_v;
 	else if (v === 'MC')
 		dentaku.mem_m = 0;
-	else if (v === 'MR') {
+	else if (v === 'MR' && !(dentaku.memflg)) {
 		dentaku.mem_not_m = html_v
 		document.querySelector("input").value = dentaku.mem_m;
 		dentaku.memflg = true

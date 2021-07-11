@@ -15,6 +15,7 @@ function press_key(v) {
 	if (!(Number.isInteger(dentaku.last_v)) && v === '.')
 		return;
 	if (dentaku.memflg === true && v[0] != "M") {
+		// console.log(dentaku.mem_not_m)
 		document.querySelector("input").value = dentaku.mem_not_m
 		dentaku.memflg = false
 	}
