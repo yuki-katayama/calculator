@@ -1,6 +1,6 @@
 class Caliculator {
 	constructor() {
-		this.last_word_is_digit = false
+		this.last_word_is_digit = true
 		this.history_id = 0
 		this.last_v = 0
 		this.mem_m = 0
@@ -18,11 +18,11 @@ class Caliculator {
 			if (this.last_v === 0)
 				this.last_v = v
 			else if (v === '00')
-				this.last_v = 100 * this.last_v
+				this.last_v = Number(String(this.last_v) + "00")
 			else if (this.float_cnt >= 1)
 			{
 				console.log(this.float_cnt)
-				if (this.float_cnt == 1)
+				if (this.float_cnt === 1)
 					this.last_v = Number(String(this.last_v) + "." + String(v))
 				else
 					this.last_v = Number(String(this.last_v) + String(v))
@@ -33,7 +33,10 @@ class Caliculator {
 		} else {
 			this.last_word_is_digit = false
 			if (v != '.')
+			{
+				this.float_cnt = 0
 				this.last_v = 0
+			}
 			else
 				this.float_cnt += 1
 		}
@@ -55,13 +58,14 @@ class Caliculator {
 		this.add_oneline(html_v, v);
 		document.querySelector("input").value = v
 		this.last_v = Number(v)
+		this.update_flg(String(this.last_v))
 	}
 	clear(html_v, v) {
 		if (this.last_v === 0 && v !== "AC")
 			return;
 		document.querySelector("input").value = html_v
 		this.last_v = this.float_cnt = 0
-		if (v == "AC")
+		if (v === "AC")
 		{
 			this.last_word_is_digit = true
 			this.add_oneline("↑==↑==↑==↑==↑ AC ↑==↑==↑==↑=", "↑")
@@ -69,7 +73,12 @@ class Caliculator {
 	}
 	update_flg(html_v) {
 		this.last_word_is_digit = (Number(html_v.slice(-1)) > -1) ? true : false;
-		this.float_cnt += (this.float_cnt > 0) ? -1 : 0;
+		if (String(this.last_v).indexOf(".") !== -1)
+			this.float_cnt = (String(this.last_v).indexOf(".") != -1)
+								? String(this.last_v).length - String(this.last_v).indexOf(".") : 0;
+		else if (this.float_cnt > 0)
+			this.float_cnt = (html_v.slice(-1) === '.') ? 1 : 0;
+		console.log(html_v)
 	}
 	culc_signs(v, html_v) {
 		function factorial(n) {
@@ -108,6 +117,7 @@ class Caliculator {
 		digit = culc(v, this.last_v)
 		document.querySelector("input").value = html_v + String(digit)
 		this.last_v = digit
+		this.update_flg(document.querySelector("input").value)
 	}
 }
 
@@ -127,6 +137,11 @@ function exec_m(v, html_v) {
 	}
 }
 
+// function is_float(str)
+// {
+
+// }
+
 function press_key(v) {
 	if (!(Number.isInteger(dentaku.last_v)) && v === '.')
 		return;
@@ -135,33 +150,36 @@ function press_key(v) {
 		dentaku.memflg = false
 	}
 	let html_v = document.querySelector("input").value
-	if (v == 'AC')
-		dentaku.clear("", "AC")
-	else if (v == 'C')
+	if (v === 'AC')
+		dentaku.clear("0", "AC")
+	else if (v === 'C')
 		dentaku.clear(html_v.slice(0, -(String(dentaku.last_v).length)), "C")
-	else if (v == '▶︎') {
+	else if (v === '▶︎') {
 		html_v = html_v.slice(0, html_v.length - 1)
-		dentaku.update_flg(html_v)
 		document.querySelector("input").value = html_v
-		if (dentaku.last_v / 10 >= 1)
+		if (Number(html_v.slice(-1)) > -1 || html_v.slice(-1) === '.')
 		{
-			dentaku.last_v /= 10
-			dentaku.last_v -= dentaku.last_v % 1 //おかしい
+			console.log(Number(html_v.split(/[-+/* ]/).slice(-1)))
+			dentaku.last_v = Number(html_v.split(/[-+/* ]/).slice(-1))
 		}
-		else if (html_v.split(/\D/)[0].length > 0 && Number(html_v.slice(-1)) > -1)
-			dentaku.last_v = Number(html_v.split(/\D/).slice(-1))
+		else if (Number(html_v.slice(-2)) > -1)
+		{
+			console.log(html_v.split(/[-+/* ]/))
+			dentaku.last_v = Number(html_v.split(/[-+/* ]/).slice(-2))
+		}
 		else
 			dentaku.last_v = 0
-	} else if (v == '=')
+		dentaku.update_flg(html_v)
+	} else if (v === '=')
 		dentaku.result(html_v)
-	else if (v == 'M-' || v == 'M+' || v == 'MC' || v == 'MR')
+	else if (v === 'M-' || v === 'M+' || v === 'MC' || v === 'MR')
 		exec_m(v, html_v)
-	else if (v == '%' || v == "+/-" ||
-		v == 'RADICAL' || v == 'EXCL_TAX' ||
-		v == 'INCL_TAX' || v == 'SQU' || v == 'FACT' ||
-		v == 'SIN' || v == 'COS' || v == 'TAN')
+	else if (v === '%' || v === "+/-" ||
+		v === 'RADICAL' || v === 'EXCL_TAX' ||
+		v === 'INCL_TAX' || v === 'SQU' || v === 'FACT' ||
+		v === 'SIN' || v === 'COS' || v === 'TAN')
 		dentaku.culc_signs(v, html_v)
 	else
 		dentaku.append(v, html_v)
-	console.log(dentaku.last_v)
+	console.log(dentaku.last_v, dentaku.float_cnt, dentaku.last_word_is_digit)
 }
