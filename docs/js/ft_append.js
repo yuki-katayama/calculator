@@ -9,7 +9,7 @@ function ft_append_oneline(str_output) {
 }
 
 function ft_append(v) {
-	if (filter(v))
+	if (ft_append_filter(document.querySelector("input").value, v))
 		return
 	let html_v = document.querySelector("input").value += String(v)
 	if (Number(v) >= -1 || v === '00')

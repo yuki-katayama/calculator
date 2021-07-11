@@ -12,7 +12,7 @@ class Caliculator {
 dentaku = new Caliculator()
 
 function press_key(v) {
-	if (!(Number.isInteger(dentaku.last_v)) && v === '.')
+	if (ft_check_is_float())
 		return;
 	if (dentaku.memflg === true && v[0] != "M") {
 		document.querySelector("input").value = dentaku.mem_not_m
