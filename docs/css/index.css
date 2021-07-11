@@ -26,21 +26,28 @@
 	background-color: rgba(230, 230, 230, 1);
 }
 
-.btn-result {
+.btn-delete-history {
 	width: calc(100% - 6px);
-	height: calc(var(--big-btn-size) * 2);
+	height: calc(var(--big-btn-size) * 1);
 	position: absolute;
-	bottom: 0px;
+	bottom: calc(var(--big-btn-size) * 2 + 3px);
 	background-color: rgba(252, 49, 49, 1);
 	margin-left: 3px;
 	color: white;
 	font-size: 30px;
 	border-radius: 10px;
+	margin-bottom: 3px;
 }
 
-.btn-red{
+.btn-result {
+	width: calc(100% - 6px);
+	height: calc(var(--big-btn-size) * 2 + 3px);
+	position: absolute;
+	bottom: 0px;
+	background-color: rgba(49, 49, 252, 1);
+	margin-left: 3px;
 	color: white;
-	background-color: red;
+	font-size: 30px;
 	border-radius: 10px;
 }
 

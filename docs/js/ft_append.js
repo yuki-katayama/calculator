@@ -1,5 +1,4 @@
-function ft_append_oneline(str_output)
-{
+function ft_append_oneline(str_output) {
 	const newEle = document.createElement('p');
 	newEle.classList.add('history' + dentaku.history_id);
 	const parent = document.getElementById('result');
@@ -10,13 +9,14 @@ function ft_append_oneline(str_output)
 }
 
 function ft_append(v) {
-	if ((dentaku.last_word_is_digit === false &&
-			(!(Number(v) >= -1 || v === '00'))) ||
-		(dentaku.last_v === 0 && (String(v)[0] === '0')) ||
-		(v === '.' && dentaku.float_cnt > 0))
-		return;
+	if (filter(v))
+		return
 	let html_v = document.querySelector("input").value += String(v)
-	if (Number(v) >= -1 || v === '00') {
+	if (Number(v) >= -1 || v === '00')
+		ft_v_is_digit(v)
+	else
+		ft_v_isnot_digit(v)
+	function ft_v_is_digit(v) {
 		dentaku.last_word_is_digit = true
 		if (dentaku.last_v === 0 && dentaku.float_cnt == 0)
 			dentaku.last_v = v
@@ -33,7 +33,8 @@ function ft_append(v) {
 			dentaku.float_cnt += 1
 		} else
 			dentaku.last_v = Number(html_v.split(/[\D]/).slice(-1))
-	} else {
+	}
+	function ft_v_isnot_digit(v) {
 		dentaku.last_word_is_digit = false
 		if (v != '.') {
 			dentaku.float_cnt = 0

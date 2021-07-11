@@ -3,6 +3,7 @@ function factorial(n) {
 }
 
 function culc(v, last_v) {
+	
 	if (v === '%')
 		digit = last_v / 100
 	else if (v === '+/-')
@@ -29,11 +30,10 @@ function culc(v, last_v) {
 }
 
 
-function ft_exec_signs(html_v, v)
-{
-	if (dentaku.last_word_is_digit === false
-		|| typeof (dentaku.last_v) !== "number"
-		|| dentaku.last_v === 0)
+function ft_exec_signs(html_v, v) {
+	if (dentaku.last_word_is_digit === false ||
+		typeof (dentaku.last_v) !== "number" ||
+		dentaku.last_v === 0)
 		return;
 	let digit = 0
 	let last_len = String(dentaku.last_v).length

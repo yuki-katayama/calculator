@@ -1,5 +1,4 @@
-function ft_exec_clear(html_v, v)
-{
+function ft_exec_clear(html_v, v) {
 	if (dentaku.last_v === 0 && v !== "AC")
 		return;
 	document.querySelector("input").value = html_v

@@ -15,31 +15,40 @@ function press_key(v) {
 	if (!(Number.isInteger(dentaku.last_v)) && v === '.')
 		return;
 	if (dentaku.memflg === true && v[0] != "M") {
-		// console.log(dentaku.mem_not_m)
 		document.querySelector("input").value = dentaku.mem_not_m
 		dentaku.memflg = false
 	}
 	let html_v = document.querySelector("input").value
-	if (v === 'AC')
-		ft_exec_clear("", "AC")
-	else if (v === 'C')
-		ft_exec_clear(html_v.slice(0, -(html_v.split(/[-+/* ]/).slice(-1)[0].length)), "C")
-	else if (v === '▶︎') {
-		ft_back_one(html_v)
-	} else if (v === '=')
-		ft_exec_equal(html_v)
-	else if (v === 'M-' || v === 'M+' || v === 'MC' || v === 'MR')
-		ft_exec_m(v, html_v)
-	else if (v === '%' || v === "+/-" ||
-		v === 'RADICAL' || v === 'EXCL_TAX' ||
-		v === 'INCL_TAX' || v === 'SQU' || v === 'FACT' ||
-		v === 'SIN' || v === 'COS' || v === 'TAN' || v == 'PI') {
+	switch(v){
+		case 'AC':
+			ft_exec_clear("", "AC")
+			break;
+		case 'C':
+			ft_exec_clear(html_v.slice(0, -(html_v.split(/[-+/* ]/).slice(-1)[0].length)), "C")
+			break;
+		case '▶︎':
+			ft_back_one(html_v)
+			break;
+		case '=':
+			ft_exec_equal(html_v)
+			break;
+		case 'M-': case 'M+': case 'MC': case 'MR':
+			ft_exec_m(v, html_v)
+			break;
+		case 'DELETE':
+			if (window.confirm("履歴を削除しますか？")) {
+				location.reload()
+			}
+			break;
+		case '%': case '+/-': case 'RADICAL': case 'EXCL_TAX': case 'INCL_TAX':
+		case 'SQU': case 'FACT': case 'SIN': case 'COS': case 'TAN': case 'PI':
 			ft_exec_signs(html_v, v)
-	} else {
-		if (document.querySelector("input").value === "0") {
-			document.querySelector("input").value = ""
-			ft_update_flg("")
-		}
+			break;
+		default:
+			if (document.querySelector("input").value === "0") {
+				document.querySelector("input").value = ""
+				ft_update_flg("")
+			}
 			ft_append(v, html_v)
 	}
 	if (dentaku.last_v == Infinity) {
