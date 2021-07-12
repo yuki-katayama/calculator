@@ -1,6 +1,8 @@
 function ft_option_filter(html_v, mode) {
 	if (dentaku.last_word_is_digit === false && mode == 'OP')
 		return ft_error(3)
+	else if (html_v.replace(/[0-9]/g, "").slice(-1) == '-' && mode == 'OP')
+			return ft_error(11)
 	else if ((dentaku.last_word_is_digit === true || html_v.slice(-1) === '.') && mode == 'PI')
 		return ft_error(9)
 	return 0

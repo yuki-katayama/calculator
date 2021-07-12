@@ -18,6 +18,10 @@ function ft_error(error_code) {
 		message = "! 符号でスタートすることはできません。!"
 	else if (error_code === 9)
 		message = "! πは数字に使用できません。!"
+	else if (error_code === 10)
+		message = "! 既に少数です。!"
+	else if (error_code === 11)
+		message = "! 引き算に\"-\"符号は使用できません。。!"
 	else if (error_code === 100)
 		message = "! 無効なパラメータで計算されました。!"
 	ft_append_oneline(message)
