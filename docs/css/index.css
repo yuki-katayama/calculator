@@ -101,7 +101,7 @@
 	width: 48%;
 	background-color: rgba(255,255,255,0.5);
 	padding: 10px;
-	max-height: 653px;
+	max-height: 633px;
 }
 
 .main{
@@ -130,7 +130,6 @@ body {
 	background-image: url("../img/hawai.png");
 	background-size: cover;
 	background-position: center center;
-	width: 100%;
-	margin: 0;
-	min-height: 100vh;
+    background-attachment: fixed;
+
 }
