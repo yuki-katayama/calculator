@@ -28,8 +28,10 @@ function press_key(v) {
 				ft_exec_clear("", "AC")
 				break;
 			case 'C':
-				ft_exec_clear(html_v.slice(0,
-					-(html_v.split(/[-+/* ]/).slice(-1)[0].length + ft_check_is_minus(dentaku.last_v))), "C")
+				let split_v = html_v.split(/[-+/* ]/)
+				if(split_v.slice(-1)[0].length !== 0)
+					ft_exec_clear(html_v.slice(0,
+						-(split_v.slice(-1)[0].length + ft_check_is_minus(dentaku.last_v))), "C")
 				break;
 			case '▶︎':
 				ft_back_one(html_v)

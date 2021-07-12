@@ -30,7 +30,7 @@ function culc(v, last_v) {
 
 
 function ft_exec_options(html_v, v) {
-	if (ft_option_filter(v, 'OP'))
+	if (ft_option_filter(html_v, 'OP'))
 		return ;
 	let digit = 0
 	let last_len = String(dentaku.last_v).length
