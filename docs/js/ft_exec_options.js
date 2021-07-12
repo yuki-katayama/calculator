@@ -29,9 +29,9 @@ function culc(v, last_v) {
 }
 
 
-function ft_exec_signs(html_v, v) {
-	if (dentaku.last_word_is_digit === false)
-		return;
+function ft_exec_options(html_v, v) {
+	if (ft_option_filter(v, 'OP'))
+		return ;
 	let digit = 0
 	let last_len = String(dentaku.last_v).length
 	html_v = html_v.slice(0, -(last_len))
@@ -40,9 +40,19 @@ function ft_exec_signs(html_v, v) {
 	} catch (e) {
 		if (e instanceof RangeError) {
 			ft_error(1)
-			ft_exec_clear("", "AC")
+			return ;
 		}
 	}
+	document.querySelector("input").value = html_v + String(digit)
+	dentaku.last_v = digit
+	ft_update_flg(document.querySelector("input").value)
+}
+
+function ft_exec_option_pi(html_v)
+{
+	let digit = 3.14159
+	if (ft_option_filter(html_v, 'PI'))
+		return ;
 	document.querySelector("input").value = html_v + String(digit)
 	dentaku.last_v = digit
 	ft_update_flg(document.querySelector("input").value)

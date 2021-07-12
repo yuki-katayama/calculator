@@ -1,16 +1,8 @@
-// function filter(v) {
-// 	if ((dentaku.last_word_is_digit === false && (!(Number(v) >= -1 || v === '00'))) ||
-// 		(String(v)[0] === '0' && dentaku.last_v === 0) ||
-// 		(v === '.' && dentaku.float_cnt > 0))
-// 		return (1)
-// 	return (0)
-// }
-
-
-
-function ft_signs_filter() {
-	if (dentaku.last_is_digit === false)
+function ft_option_filter(html_v, mode) {
+	if (dentaku.last_word_is_digit === false && mode == 'OP')
 		return ft_error(3)
+	else if ((dentaku.last_word_is_digit === true || html_v.slice(-1) === '.') && mode == 'PI')
+		return ft_error(9)
 	return 0
 }
 
@@ -23,9 +15,9 @@ function ft_append_filter(html_v, v) {
 			return ft_error(5)
 		else if (errno == 3)
 			return ft_error(6)
-	} else if (ft_check(v, html_v))
+	} else if (ft_check_zero_start(v, html_v))
 		return ft_error(7)
-	else if (ft_check(v))
+	else if (ft_check_signs_start(v, html_v) && v !== '.')
 		return ft_error(8)
 	return 0
 }
