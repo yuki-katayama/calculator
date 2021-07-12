@@ -95,6 +95,16 @@
 	padding: 0 10px;
 }
 
+.result h2{
+	text-align: center;
+	margin: 0px;
+	padding-top: 10px;
+}
+
+.result h3{
+	margin: 0px
+}
+
 .calc{
 	border-radius: 10px;
 	display: flex;
