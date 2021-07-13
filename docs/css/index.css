@@ -39,6 +39,10 @@
 	margin-bottom: 3px;
 }
 
+.btn-history {
+	margin-left: 175px;
+}
+
 .btn-result {
 	width: calc(100% - 6px);
 	height: calc(var(--big-btn-size) * 2 + 3px);
