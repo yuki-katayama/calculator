@@ -1,3 +1,17 @@
+function ft_check_continue_zero(v, html_v)
+{
+	let split_v = html_v.split(/[+/*-]/).slice(-1)[0]
+	if (Number(split_v) === 0 && ft_check_is_digit(v) &&
+			(split_v.length === 1 || (split_v.length === 0 && v === "00")))
+	{
+		if (Number(v) < 1)
+			return 1
+		else
+			return 2
+	}
+	return 0
+}
+
 function ft_check_is_minus(num)
 {
 	if (num < 0)
@@ -7,13 +21,13 @@ function ft_check_is_minus(num)
 
 function ft_check_is_infinity(num)
 {
-	if (num == Infinity)
+	if (num === Infinity)
 		return 1
 	return 0
 }
 
 function ft_check_signs_start(v, html_v) {
-	if (html_v.length == 0 && !(ft_check_is_digit(v)))
+	if (html_v.length === 0 && !(ft_check_is_digit(v)))
 		return 1
 	return 0
 }
@@ -32,7 +46,7 @@ function ft_check_is_digit(v)
 }
 
 function ft_check_continue_sign(v, html_v) {
-	if (html_v.slice(-1) == '.' && v === '.')
+	if (html_v.slice(-1) === '.' && v === '.')
 		return 1
 	else if ((dentaku.last_word_is_digit === false && v === '.')
 				|| (html_v.slice(-1) === '.' && !(ft_check_is_digit(v))))

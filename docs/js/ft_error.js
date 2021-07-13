@@ -22,6 +22,8 @@ function ft_error(error_code) {
 		message = "エラー: 既に少数です!"
 	else if (error_code === 11)
 		message = "エラー: 引き算に\"-\"符号は使用できません!"
+	else if (error_code === 12)
+		message = "エラー: 整数値に0を2個以上追加することはできません!"
 	else if (error_code === 100)
 		message = "エラー: 無効なパラメータで計算されました!"
 	ft_append_oneline(message)

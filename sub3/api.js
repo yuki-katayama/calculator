@@ -1,4 +1,5 @@
-url = "1xrgAvz72vXYb_WdCIM2O5RwY_nzicJHbk2dyNDze4xk"
+spread_sheet_id = "1xrgAvz72vXYb_WdCIM2O5RwY_nzicJHbk2dyNDze4xk"
+api_key = "AIzaSyCwpr0evx8ZQw8MVc_xbiCdRt1iUTifYyM"
 client = {
 	"web": {
 		"client_id": "399262606223-iedanmcknj71q8f0a2d39dclgeb7bgo1.apps.googleusercontent.com",
@@ -10,11 +11,15 @@ client = {
 	}
 }
 
+base_point = "https://sheets.googleapis.com"
+end_point = "v4/spreadsheets"
+
+url = `${base_point}/${end_point}/${spread_sheet_id}`
 const axios = require('axios').default;
-axios.get(url)
+axios.get("a")
   .then(function (response) {
     console.log(response);                                                                                                                                                    
   })
-  .catch(function (error) {
-    console.log(error);                                                                                                                                                       
-  });       
+//   .catch(function (error) {
+//     console.log(error);                                                                                                                                                       
+//   });

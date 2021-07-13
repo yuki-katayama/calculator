@@ -23,8 +23,6 @@ function culc(v, last_v) {
 		digit = Math.cos(last_v)
 	else if (v === 'TAN')
 		digit = Math.tan(last_v)
-	else if (v == 'PI')
-		digit = 3.14159
 	return (digit)
 }
 
