@@ -3,6 +3,7 @@ function ft_exec_equal(html_v) {
 		return;
 	const f = new Function("return " + html_v)
 	let v = f().toString()
+	dentaku.blob = new Blob([document.getElementById("result").innerText],{type:"text/plan"});
 	ft_append_oneline(html_v + "=" + v);
 	document.querySelector("input").value = v
 	dentaku.last_v = Number(v)

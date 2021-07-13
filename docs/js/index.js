@@ -6,10 +6,19 @@ class Caliculator {
 		this.mem_m = 0
 		this.mem_not_m = ""
 		this.float_cnt = 0
+		this.blob = new Blob(["履歴なし"],{type:"text/plan"});
 	}
 }
 
 dentaku = new Caliculator()
+
+function download_history()
+{
+	let link = document.createElement('a');
+	link.href = URL.createObjectURL(dentaku.blob);
+	link.download = 'history.txt';
+	link.click();
+}
 
 function press_key(v) {
 	if (ft_check_is_float(v))
